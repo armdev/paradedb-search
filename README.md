@@ -122,7 +122,7 @@ ParadeDB also supports:
 - **Similarity (vector) search** for high-performance searches across large datasets.
 - **Advanced indexing techniques** for optimizing queries that involve multiple data types (text, numeric, boolean, etc.).
 
-For more detailed documentation, visit [ParadeDB Docs](#).
+For more detailed documentation, visit [ParadeDB Docs](https://docs.paradedb.com/documentation/getting-started/quickstart#expected-response).
 
 ---
 
