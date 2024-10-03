@@ -1,0 +1,40 @@
+services:
+  paradedb:
+    image: paradedb/paradedb:latest
+    container_name: paradedb
+    environment:
+      POSTGRES_PASSWORD: paradedb
+      PARADEDB_TELEMETRY: true # Set to 'false' (or remove) to disable anonymous telemetry
+    ports:
+      - "5432:5432"
+    volumes:
+      - paradedb_data:/var/lib/postgresql/data
+    networks:
+      - parade_network
+      
+  pgadmin:
+    image: registry.gitlab.com/armdev/dockers/pgadmin:4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "127.0.0.1:5050:80"
+    depends_on:
+      - paradedb     
+    links:
+      - paradedb  
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ~/volumes/data/pgbackup/_data/pgadmin:/var/lib/pgadmin
+    networks:
+      - parade_network
+
+volumes:
+  paradedb_data:
+
+
+networks:
+  parade_network:
+    driver: bridge
+
